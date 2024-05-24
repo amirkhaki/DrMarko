@@ -1,0 +1,25 @@
+@{
+	Layout = "_Aviato";
+}
+@model DrMarko.Models.ViewModels.IndexViewModel
+
+
+<partial name="blocks/hero-slider" for="Sliders" />
+<partial name="blocks/category" for="Categories" />
+
+<section class="products section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center">
+				<h2>Trendy Products</h2>
+			</div>
+		</div>
+		<div class="row">
+		@foreach(var item in Model.Products) {
+		<vc:posts product=item></vc:posts>
+		}
+		</div>
+	</div>
+</section>
+
+<partial name="blocks/call-to-action" />

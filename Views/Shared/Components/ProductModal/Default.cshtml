@@ -1,0 +1,40 @@
+@model Product
+@{
+	   var firstItem = Model.Images.FirstOrDefault();
+}
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<i class="tf-ion-close"></i>
+			</button>
+		  	<div class="modal-dialog " role="document">
+		    	<div class="modal-content">
+			      	<div class="modal-body">
+			        	<div class="row">
+			        		<div class="col-md-8 col-sm-6 col-xs-12">
+			        			<div class="modal-image">
+						@if(firstItem is not null)
+						{
+						<img class="img-responsive" src='@Url.Action("Index", "Images", new {id = firstItem.ImageId})' alt="@firstItem.Alt" />
+						}
+						else
+						{
+							<img class="img-responsive" src="https://placehold.co/500x600" alt="placeholder-img" />
+						}
+			        			</div>
+			        		</div>
+			        		<div class="col-md-4 col-sm-6 col-xs-12">
+			        			<div class="product-short-details">
+			        				<h2 class="product-title">@Model.Title</h2>
+			        				<p class="product-price">$200</p>
+			        				<p class="product-short-description">
+											@Model.Description
+			        				</p>
+			        				<a href="cart.html" class="btn btn-main">Add To Cart</a>
+			        				<a asp-controller="Home" asp-action="Details"
+												asp-route-id="@Model.Id"
+												class="btn btn-transparent">View Product Details</a>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+		    	</div>
+				</div>

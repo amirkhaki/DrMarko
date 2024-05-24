@@ -1,0 +1,57 @@
+@model Product
+
+@{
+	   var firstItem = Model.Images.FirstOrDefault();
+}
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<span class="bage">Sale</span>
+						@if(firstItem is not null)
+						{
+						<img class="img-responsive" src='@Url.Action("Index", "Images", new {id = firstItem.ImageId})' alt="@firstItem.Alt" />
+						}
+						else
+						{
+							<img class="img-responsive" src="https://placehold.co/500x600" alt="placeholder-img" />
+						}
+						<div class="preview-meta">
+							<ul>
+								<li>
+								<!-- add htmx popup !-->
+									<span hx-get 
+										hx-controller="Home" 
+										hx-action="Modal"
+										hx-route-id="@Model.Id" 
+										hx-target="#product-@Model.Id-modal"
+										hx-trigger="click"
+										data-toggle="modal" 
+										data-target="#product-@Model.Id-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+			                        <a href="#!" ><i class="tf-ion-ios-heart"></i></a>
+								</li>
+								<li>
+									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+                      	</div>
+					</div>
+					<div class="product-content">
+						<h4><a asp-controller="Home" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a></h4>
+						<p class="price">$200</p>
+					</div>
+				</div>
+			</div>
+  <div class="modal product-modal fade" id="product-@Model.Id-modal"
+	@* style="display: none" *@
+    aria-hidden="false"
+    tabindex="-1">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<i class="tf-ion-close"></i>
+			</button>
+		  	<div class="modal-dialog " role="document">
+		  	</div>
+		</div><!-- /.modal -->

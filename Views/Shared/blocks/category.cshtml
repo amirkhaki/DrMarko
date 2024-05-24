@@ -1,0 +1,27 @@
+@model IEnumerable<DrMarko.Models.Category>
+
+<section class="product-category section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title text-center">
+					<h2>Product Category</h2>
+				</div>
+			</div>
+			@foreach(var item in Model)
+			{
+			<div class="col-md-6">
+				<div class="category-box">
+					<a asp-controller="Categories" asp-action="Index" asp-route-id="@item.Id">
+						<img src='@Url.Action("Index", "Images", new {id = item.ImageId})' alt="" />
+						<div class="content">
+							<h3>@item.Title</h3>
+							<p>@item.Description</p>
+						</div>
+					</a>	
+				</div>
+			</div>
+			}
+		</div>
+	</div>
+</section>

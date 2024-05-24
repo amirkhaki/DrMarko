@@ -1,0 +1,9 @@
+- [x] add upload photo to Category creation
+- [x] add possibility to add categories when editing and creating
+- [ ] create model for index page model banners and setup its component
+  - [x] create categories controller
+- [ ] menus model (with searching for all controllers in executable assembly)
+- [ ] Refactor image upload to a utility class (instead of copy pasting)
+ - [ ] garbage collect images
+- [ ] Add Pagination
+- [ ] add navigations

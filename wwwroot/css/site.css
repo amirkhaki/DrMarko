@@ -20,3 +20,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+  .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+  .slider {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .slide {
+    min-width: 100%;
+  }
