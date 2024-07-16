@@ -5,14 +5,14 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title text-center">
-					<h2>Product Category</h2>
+					<h2><a asp-controller="Categories" asp-action="Index">Product Category</a></h2>
 				</div>
 			</div>
 			@foreach(var item in Model)
 			{
 			<div class="col-md-6">
 				<div class="category-box">
-					<a asp-controller="Categories" asp-action="Index" asp-route-id="@item.Id">
+					<a asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id">
 						<img src='@Url.Action("Index", "Images", new {id = item.ImageId})' alt="" />
 						<div class="content">
 							<h3>@item.Title</h3>

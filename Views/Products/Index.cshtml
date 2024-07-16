@@ -1,0 +1,38 @@
+@model IEnumerable<DrMarko.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+
+<section class="products section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center">
+				<h2>Trendy Products</h2>
+			</div>
+		</div>
+		<div class="row">
+		@foreach(var item in Model) {
+		<vc:posts product=item></vc:posts>
+		}
+		</div>
+		<div class="text-center">
+			<ul class="pagination post-pagination">
+ @{
+var prev_id = Model.First().Id-2*Model.Count();
+}
+				<li><a asp-controller="Categories"
+					asp-action="Index" 
+					asp-route-first_id="@prev_id">Prev</a>
+				</li>
+				<li><a asp-controller="Categories"
+					asp-action="Index" asp-route-first_id="@Model.Last().Id">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<partial name="blocks/call-to-action" />

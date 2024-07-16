@@ -25,42 +25,12 @@ public class HomeController : Controller
         {
             Products = await _context.Product
                 .Include(p => p.Images)
+                .Take(9)
                 .ToListAsync(),
-            Categories = await _context.Category.ToListAsync(),
+            Categories = await _context.Category.Take(4).ToListAsync(),
             Sliders = await _context.Slider.ToListAsync(),
         };
         return View(viewModel);
-    }
-
-    public async Task<IActionResult> Details(int id)
-    {
-        var product = await _context.Product
-            .Include(p => p.Images)
-            .ThenInclude(i => i.Image)
-            .Include(p => p.Categories)
-            .FirstOrDefaultAsync(p => p.Id == id);
-        if (product == null)
-        {
-            return NotFound();
-        }
-
-        return View(product);
-    }
-
-    public async Task<IActionResult> Modal(int id)
-    {
-        var product = await _context.Product
-            .Include(p => p.Images)
-            .ThenInclude(i => i.Image)
-            .FirstOrDefaultAsync(p => p.Id == id);
-        if (product == null)
-        {
-            return NotFound();
-        }
-        return ViewComponent("ProductModal", new
-        {
-            product = product,
-        });
     }
 
     public IActionResult Privacy()

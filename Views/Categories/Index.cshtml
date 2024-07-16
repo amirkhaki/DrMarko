@@ -1,10 +1,43 @@
-@model IEnumerable<Product>
-<section class="products section">
+@model IEnumerable<Category>
+
+
+<section class="product-category section">
 	<div class="container">
 		<div class="row">
-		@foreach(var item in Model) {
-		<vc:posts product=item></vc:posts>
-		}
+			<div class="col-md-12">
+				<div class="title text-center">
+					<h2><a asp-controller="Categories" asp-action="Index">Product Category</a></h2>
+				</div>
+			</div>
+			@foreach(var item in Model)
+			{
+			<div class="col-md-6">
+				<div class="category-box">
+					<a asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id">
+						<img src='@Url.Action("Index", "Images", new {id = item.ImageId})' alt="" />
+						<div class="content">
+							<h3>@item.Title</h3>
+							<p>@item.Description</p>
+						</div>
+					</a>	
+				</div>
+			</div>
+			}
+		</div>
+		<div class="text-center">
+			<ul class="pagination post-pagination">
+ @{
+var prev_id = Model.First().Id-2*Model.Count();
+}
+				<li><a asp-controller="Categories"
+					asp-action="Index" 
+					asp-route-first_id="@prev_id">Prev</a>
+				</li>
+				<li><a asp-controller="Categories"
+					asp-action="Index" asp-route-first_id="@Model.Last().Id">Next</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </section>
+<partial name="blocks/call-to-action" />

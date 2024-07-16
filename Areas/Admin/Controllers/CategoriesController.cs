@@ -210,4 +210,3 @@ public class CategoriesController : Controller
         return _context.Category.Any(e => e.Id == id);
     }
 }
-

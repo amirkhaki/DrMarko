@@ -12,8 +12,16 @@ public class CategoriesController : Controller
 	{
 		_context = context;
 	}
+	public async Task<IActionResult> Index(int first_id = 1, int size = 10)
+	{
+		var model = await _context.Category
+			.Where(c => c.Id >= first_id)
+			.Take(size)
+			.ToListAsync();
+		return base.View(model);
+	}
 
-	public async Task<IActionResult> Index(int id)
+	public async Task<IActionResult> Details(int id)
 	{
 		var category = await _context.Category
 					.Include(c => c.Products)
@@ -23,6 +31,6 @@ public class CategoriesController : Controller
 		{
 			return NotFound();
 		}
-		return base.View(category.Products);
+		return View(category.Products);
 	}
 }
