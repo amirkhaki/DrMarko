@@ -1,0 +1,44 @@
+@model DrMarko.Models.Cart
+                <table id="cart-table" class="table">
+                  <thead>
+                    <tr>
+                      <th class="">Item Name</th>
+                      <th class="">Item Price</th>
+                      <th class="">Item Quantity</th>
+                      <th class="">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach(var item in Model.Entries.OrderByDescending(e => e.ModifiedDate).ToList())
+                    {
+                    var firstItem = item.Product.Images.FirstOrDefault();
+                    <tr class="">
+                      <td class="">
+                        <div class="product-info">
+        @if(firstItem is not null)
+        {
+                          <img width="80" src='@Url.Action("Index", "Images", new {id = firstItem.ImageId})' alt="@firstItem.Alt" />
+                          }
+                          else
+                          {
+                          <img width="80" src="https://placehold.co/80x80" alt="placeholder-img" />
+                          }
+                          <a href="#!">@item.Product.Title</a>
+                        </div>
+                      </td>
+                      <td class="">$200.00</td>
+                      <td class="">@item.Quantity</td>
+                      <td class="">
+                        <a hx-post
+                            hx-controller="Cart"
+                            hx-action="RemoveItem"
+                            hx-route-productId="@item.Product.Id"
+                            hx-target="#cart-table"
+                            class="product-remove"
+                            href="#!"
+                            hx-trigger="click">Remove</a>
+                      </td>
+                    </tr>
+                    }
+                  </tbody>
+                </table>

@@ -1,0 +1,57 @@
+@model DrMarko.ViewComponents.CartViewComponentData
+
+<li hx-swap-oob="true" id="cart-container" class="dropdown cart-nav dropdown-slide">
+  <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+      class="tf-ion-android-cart"></i>Cart</a>
+  <div class="dropdown-menu cart-dropdown">
+    @foreach(var item in Model.Cart.Entries.OrderByDescending(e => e.ModifiedDate).Take(5))
+    {
+      var firstItem = item.Product.Images.FirstOrDefault();
+    <!-- Cart Item -->
+    <div class="media">
+      <a class="pull-left" href="#!">
+        @if(firstItem is not null)
+        {
+        <img class="media-object" src='@Url.Action("Index", "Images", new {id = firstItem.ImageId})' alt="@firstItem.Alt" />
+        }
+        else
+        {
+          <img class="media-object" src="https://placehold.co/500x600" alt="placeholder-img" />
+        }
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"><a href="#!">@item.Product.Title</a></h4>
+        <div class="cart-price">
+          <span>@item.Quantity x</span> @* quantity *@
+          <span>1250.00</span> @* price *@
+        </div>
+        <h5><strong>$1200</strong></h5> @* sum *@
+      </div>
+      <span hx-post
+        hx-controller="Cart"
+        hx-action="RemoveItem"
+        hx-route-productId="@item.Product.Id"
+        hx-target="#cart-container"
+        class="remove"
+        hx-trigger="click">
+        <i class="tf-ion-close"></i>
+      </span>
+    </div><!-- / Cart Item -->
+    }
+
+    <div class="cart-summary">
+      <span>Total</span>
+      <span class="total-price">$1799.00</span> @* total sum *@
+    </div>
+    <ul class="text-center cart-buttons">
+     <li><a asp-controller="Cart" asp-action="Index" class="btn btn-small">View Cart</a></li>
+      <li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+    </ul>
+  </div>
+
+</li><!-- / Cart -->
+
+@if (Model.IncludeTable)
+{
+  <partial name="blocks/cart" model="Model.Cart" />
+}

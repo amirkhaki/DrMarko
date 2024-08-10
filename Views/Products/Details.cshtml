@@ -95,7 +95,12 @@
 							}
 						</ul>
 					</div>
-					<a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
+					<a hx-post
+					   hx-controller="Cart"
+					   hx-action="AddItem"
+					   hx-route-productId="@Model.Id"
+					   hx-target="#cart-container"
+					   hx-trigger="click" class="btn btn-main mt-20">Add To Cart</a>
 				</div>
 			</div>
 		</div>
