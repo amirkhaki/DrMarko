@@ -5,8 +5,8 @@ namespace DrMarko.ViewComponents;
 
 public class PostsViewComponent : ViewComponent
 {
-	public IViewComponentResult Invoke(Product product)
-	{
-		return View(product);
-	}
+    public IViewComponentResult Invoke(Product product)
+    {
+        return View(product);
+    }
 }

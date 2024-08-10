@@ -7,9 +7,9 @@ namespace DrMarko.Controllers;
 
 public class ImagesController : Controller
 {
-	private readonly IMinioClient _minioClient;
-	private readonly ApplicationDbContext _context;
-	private readonly IConfiguration _configuration;
+    private readonly IMinioClient _minioClient;
+    private readonly ApplicationDbContext _context;
+    private readonly IConfiguration _configuration;
 
     public ImagesController(IMinioClient minioClient, ApplicationDbContext context, IConfiguration configuration)
     {
@@ -32,14 +32,14 @@ public class ImagesController : Controller
     }
 
     public async Task<IActionResult> Index(int id)
-	{
-		var image = await _context.Image.FindAsync(id);
-		if (image is null) 
-		{
-			return NotFound();
-		}
+    {
+        var image = await _context.Image.FindAsync(id);
+        if (image is null)
+        {
+            return NotFound();
+        }
 
         string virtualPath = await GetDownloadLinkAsync(image.Hash);
         return Redirect(virtualPath);
-	}
+    }
 }

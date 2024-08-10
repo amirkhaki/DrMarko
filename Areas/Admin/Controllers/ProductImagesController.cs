@@ -145,7 +145,7 @@ public class ProductImagesController : Controller
         }
         ViewData["ImageId"] = new SelectList(_context.Set<Image>(), "Id",
             "Id", productImage.ImageId);
-        ViewData["ProductId"] = new SelectList(_context.Product, "Id", 
+        ViewData["ProductId"] = new SelectList(_context.Product, "Id",
             "Id", productImage.ProductId);
         return View(productImage);
     }
@@ -156,7 +156,7 @@ public class ProductImagesController : Controller
     [HttpPost]
     [Route("Admin/Products/{pid:int}/ProductImages/Edit/{id}")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int pid, int id, 
+    public async Task<IActionResult> Edit(int pid, int id,
         [Bind("Id,Alt,ImageId,ProductId")] ProductImage productImage)
     {
         if (id != productImage.Id)
@@ -184,9 +184,9 @@ public class ProductImagesController : Controller
             }
             return RedirectToAction(nameof(Index), new { pid = pid });
         }
-        ViewData["ImageId"] = new SelectList(_context.Set<Image>(), "Id", 
+        ViewData["ImageId"] = new SelectList(_context.Set<Image>(), "Id",
             "Id", productImage.ImageId);
-        ViewData["ProductId"] = new SelectList(_context.Product, "Id", 
+        ViewData["ProductId"] = new SelectList(_context.Product, "Id",
             "Id", productImage.ProductId);
         return View(productImage);
     }

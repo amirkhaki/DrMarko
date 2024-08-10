@@ -6,17 +6,17 @@ namespace DrMarko.Data;
 
 public class AuthSeed
 {
-	private readonly UserManager<ApplicationUser> _userManager;
-	private readonly RoleManager<IdentityRole> _roleManager;
-	private readonly IConfiguration _configuration;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IConfiguration _configuration;
 
-	public AuthSeed(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
-	{
-		_userManager = userManager;
-		_roleManager = roleManager;
-		_configuration = configuration;
-	}
-	public async Task SeedAdminUserAsync()
+    public AuthSeed(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+    {
+        _userManager = userManager;
+        _roleManager = roleManager;
+        _configuration = configuration;
+    }
+    public async Task SeedAdminUserAsync()
     {
         var adminUsername = _configuration["AdminUser:Email"];
         var adminPassword = _configuration["AdminUser:Password"];

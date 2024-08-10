@@ -108,7 +108,7 @@ public class SlidersController : Controller
             _context.Image.Add(image);
             await _context.SaveChangesAsync();
         }
-        var slider = new Slider 
+        var slider = new Slider
         {
             SubTitle = sliderVM.SubTitle,
             Title = sliderVM.Title,

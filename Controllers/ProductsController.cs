@@ -14,14 +14,14 @@ public class ProductsController : Controller
     }
 
     // GET: Products
-	public async Task<IActionResult> Index(int first_id = 1, int size = 5)
-	{
-		var model = await _context.Product
-			.Where(c => c.Id >= first_id)
-			.Take(size)
-			.ToListAsync();
-		return base.View(model);
-	}
+    public async Task<IActionResult> Index(int first_id = 1, int size = 5)
+    {
+        var model = await _context.Product
+            .Where(c => c.Id >= first_id)
+            .Take(size)
+            .ToListAsync();
+        return base.View(model);
+    }
 
     // GET: Products/Details/5
     public async Task<IActionResult> Details(int id, string? name)
@@ -38,7 +38,7 @@ public class ProductsController : Controller
 
         return View(product);
     }
-    
+
     // GET: Products/Modal/5
     public async Task<IActionResult> Modal(int id)
     {
