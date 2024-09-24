@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-8 text-@slider.Alignment.ToString().ToLower()">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">@slider.SubTitle</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@slider.Title</h1>
+          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">@Html.Raw(slider.Title)</h1>
           <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="@slider.Url">@slider.ButtonText</a>
         </div>
       </div>
