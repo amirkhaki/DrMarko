@@ -79,7 +79,7 @@ https://localhost:5124/
 
 ## Contributing
 
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. Any contributions are welcome!
+If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. Any contributions are welcome! 
 
 ## Contact
 
